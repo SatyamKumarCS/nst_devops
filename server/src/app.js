@@ -13,6 +13,11 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 
+// Health Check
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // Root Endpoint
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to ShopSmart API' });

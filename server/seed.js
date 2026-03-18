@@ -27,16 +27,34 @@ const products = [
     imageUrl: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&q=80&w=400"
   },
   {
-    name: "Leather Executive Briefcase",
-    description: "Handcrafted Italian leather briefcase that blends timeless style with modern functionality.",
-    price: 245.00,
-    imageUrl: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&q=80&w=400"
+    name: "Wireless Charging Pad",
+    description: "Fast-charging, elegant fabric-wrapped pad that powers up all your devices simultaneously.",
+    price: 49.99,
+    imageUrl: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&q=80&w=400"
   },
   {
-    name: "Smart Ceramic Coffee Mug",
-    description: "Keep your drinks at the perfect temperature for hours with this app-controlled ceramic mug.",
-    price: 89.00,
-    imageUrl: "https://images.unsplash.com/photo-1517191434949-5e90cd67d2b6?auto=format&fit=crop&q=80&w=400"
+    name: "Smart VR Headset",
+    description: "Immerse yourself in new worlds with crystal clear 8K resolution and spatial audio technology.",
+    price: 499.00,
+    imageUrl: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    name: "Bluetooth Record Player",
+    description: "Classic vinyl sound meets modern convenience with wireless streaming and high-fidelity output.",
+    price: 189.50,
+    imageUrl: "https://images.unsplash.com/photo-1542204113-e935417936c9?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    name: "4K Handheld Gaming Console",
+    description: "Play your favorite AAA titles on the go with a vibrant OLED screen and ergonomic controls.",
+    price: 349.00,
+    imageUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400"
+  },
+  {
+    name: "Pro Max Smartphone",
+    description: "Experience the pinnacle of mobile technology with a stunning 6.9-inch display and professional-grade camera system.",
+    price: 1199.00,
+    imageUrl: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=400"
   },
   {
     name: "Professional Mirrorless Camera",
@@ -51,22 +69,16 @@ const products = [
     imageUrl: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&q=80&w=400"
   },
   {
-    name: "Portable Power Station",
-    description: "High-capacity power for your adventures, capable of charging laptops, phones, and mini-fridges.",
-    price: 399.00,
-    imageUrl: "https://images.unsplash.com/photo-1593003023021-39e6a2561571?auto=format&fit=crop&q=80&w=400"
+    name: "Ultrabook Pro 14",
+    description: "Powerful, portable, and persistent. The ultimate laptop for creators and developers on the move.",
+    price: 1499.00,
+    imageUrl: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=80&w=400"
   },
   {
-    name: "Minimalist Desk Lamp",
-    description: "Touch-controlled LED lamp with adjustable brightness and wireless charging base.",
-    price: 75.00,
-    imageUrl: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    name: "Bamboo Standing Desk",
-    description: "Eco-friendly height-adjustable desk designed for peak productivity and ergonomic comfort.",
-    price: 599.00,
-    imageUrl: "https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?auto=format&fit=crop&q=80&w=400"
+    name: "Mechanical Glow Keyboard",
+    description: "Ultra-responsive mechanical switches with customizable RGB lighting and premium aluminum build.",
+    price: 145.00,
+    imageUrl: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=400"
   },
   {
     name: "Noise-Cancelling Earbuds",
@@ -75,28 +87,16 @@ const products = [
     imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&q=80&w=400"
   },
   {
-    name: "Architectural Backpack",
-    description: "Functional design for the modern urban explorer, featuring weather-resistant materials.",
-    price: 135.00,
-    imageUrl: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=400"
-  },
-  {
     name: "Smart Home Hub",
     description: "Control your entire home with a single, elegant interface and advanced voice recognition.",
     price: 129.00,
     imageUrl: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=400"
   },
   {
-    name: "Stainless Steel Espresso Machine",
-    description: "Barista-quality coffee at home with precise temperature control and manual steam wand.",
-    price: 499.00,
-    imageUrl: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    name: "Leather Bound Journal",
-    description: "Premium paper for your thoughts and designs, wrapped in genuine distressed leather.",
-    price: 45.00,
-    imageUrl: "https://images.unsplash.com/photo-1544816153-12ad5d71430a?auto=format&fit=crop&q=80&w=400"
+    name: "Foldable Tablet Pro",
+    description: "The future of productivity. A high-performance tablet that folds into a compact smartphone form factor.",
+    price: 1799.00,
+    imageUrl: "https://images.unsplash.com/photo-1585338107529-13afc5f02586?auto=format&fit=crop&q=80&w=400"
   }
 ];
 
