@@ -7,6 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "jest",
+    "test:int": "DATABASE_URL=\"file:./test.db\" jest --testPathPattern=tests/integration",
     "lint": "echo 'No linter configured yet'"
   },
   "dependencies": {
