@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { fetchApi } from '../utils/api';
 import { useNavigate, Link } from 'react-router-dom';
-import { UserPlus, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Register() {
   const [name, setName] = useState('');

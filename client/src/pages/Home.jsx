@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchApi } from '../utils/api';
-import { ShoppingCart, Star, Zap, ChevronRight, SearchX } from 'lucide-react';
+import { Star, Zap, ChevronRight, SearchX } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { Link, useSearchParams } from 'react-router-dom';
 
@@ -161,7 +161,7 @@ export default function Home() {
                   <SearchX size={32} />
                 </div>
                 <h3 style={{fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.5rem'}}>No products found</h3>
-                <p style={{color: 'var(--text-muted)'}}>We couldn't find any products matching "{searchQuery}". Try different keywords.</p>
+                <p style={{color: 'var(--text-muted)'}}>We couldn&apos;t find any products matching &quot;{searchQuery}&quot;. Try different keywords.</p>
                 <button 
                   onClick={() => {
                     // This will clear the search in the URL which will then sync back to App.jsx

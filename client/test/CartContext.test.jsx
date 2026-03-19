@@ -3,7 +3,6 @@ import { renderHook, act } from '@testing-library/react';
 import { CartProvider, useCart } from '../src/context/CartContext';
 import { AuthContext } from '../src/context/AuthContext';
 import { NotificationContext } from '../src/context/NotificationContext';
-import React from 'react';
 
 // Simplified wrapper that provides required contexts for testing
 const AllTheProviders = ({ children, authValue, notificationValue }) => (
@@ -26,7 +25,7 @@ describe('CartContext', () => {
     
     // Default mock implementation for localStorage
     vi.stubGlobal('localStorage', {
-      getItem: vi.fn((key) => null),
+      getItem: vi.fn(() => null),
       setItem: vi.fn(),
       clear: vi.fn(),
       removeItem: vi.fn()

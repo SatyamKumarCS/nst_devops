@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { fetchApi } from '../utils/api';
 import { useNavigate, Link } from 'react-router-dom';
-import { LogIn, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -71,7 +71,7 @@ export default function Login() {
         </form>
 
         <p style={{marginTop: '2rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem'}}>
-          Don't have an account? <Link to="/register" style={{color: 'var(--primary)', fontWeight: 700}}>Create one now</Link>
+          Don&apos;t have an account? <Link to="/register" style={{color: 'var(--primary)', fontWeight: 700}}>Create one now</Link>
         </p>
       </div>
     </div>

@@ -4,7 +4,6 @@ import Checkout from '../src/pages/Checkout';
 import { BrowserRouter } from 'react-router-dom';
 import * as AuthContextModule from '../src/context/AuthContext';
 import * as CartContextModule from '../src/context/CartContext';
-import React from 'react';
 
 // Mock useNavigate
 const mockNavigate = vi.fn();
