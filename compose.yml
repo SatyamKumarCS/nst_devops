@@ -23,9 +23,7 @@ services:
         condition: service_healthy
         required: false
     profiles: [ "migrate" ]
-    build:
-      context: ./server
-      dockerfile: ./Dockerfile
+    image: ghcr.io/satyamkumarcs/nst_devops-server:latest
     command: "npm run db:migrate:deploy"
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/shopsmart
@@ -39,9 +37,7 @@ services:
         condition: service_healthy
         required: false
     profiles: [ "seed" ]
-    build:
-      context: ./server
-      dockerfile: ./Dockerfile
+    image: ghcr.io/satyamkumarcs/nst_devops-server:latest
     command: "npm run db:seed"
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/shopsmart
@@ -57,9 +53,7 @@ services:
       migrate:
         condition: service_completed_successfully
         required: false
-    build:
-      context: ./server
-      dockerfile: ./Dockerfile
+    image: ghcr.io/satyamkumarcs/nst_devops-server:latest
     restart: unless-stopped
     ports:
       - 5001:8080
@@ -68,9 +62,7 @@ services:
       DATABASE_URL: postgres://postgres:postgres@db:5432/shopsmart
 
   web:
-    build:
-      context: ./client
-      dockerfile: ./Dockerfile
+    image: ghcr.io/satyamkumarcs/nst_devops-client:latest
     restart: unless-stopped
     ports:
       - 3000:80
