@@ -133,8 +133,8 @@ jobs:
           context: ./client
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}-client:${{ needs.commit-hash.outputs.commit_hash }}
-            ghcr.io/${{ github.repository }}-client:latest
+            ghcr.io/${{ toLower(github.repository) }}-client:${{ needs.commit-hash.outputs.commit_hash }}
+            ghcr.io/${{ toLower(github.repository) }}-client:latest
 
       # Build server Docker image
       - name: Build and push Docker image
@@ -143,5 +143,5 @@ jobs:
           context: ./server
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}-server:${{ needs.commit-hash.outputs.commit_hash }}
-            ghcr.io/${{ github.repository }}-server:latest
+            ghcr.io/${{ toLower(github.repository) }}-server:${{ needs.commit-hash.outputs.commit_hash }}
+            ghcr.io/${{ toLower(github.repository) }}-server:latest
