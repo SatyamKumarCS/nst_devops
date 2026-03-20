@@ -6,14 +6,14 @@ RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 # Install openssl
 RUN apt-get update && apt-get install -y openssl
 # Install production dependencies
-COPY server/package*.json ./
+COPY package*.json ./
 RUN npm ci --omit=dev
 # Generate prisma client
-COPY server/prisma ./prisma/
-COPY server/prisma.config.ts ./
+COPY prisma ./prisma/
+COPY prisma.config.ts ./
 RUN npm run db:generate
 # Copy built files
-COPY --chown=appuser:appgroup server/ .
+COPY --chown=appuser:appgroup . .
 # Change user
 USER appuser
 # Start the app
