@@ -131,15 +131,25 @@ const products = [
 ];
 
 async function main() {
-  console.log('Cleaning up database...');
-  await prisma.product.deleteMany({});
-
   console.log('Seeding products...');
   for (const p of products) {
-    await prisma.product.create({ data: p });
+    const existing = await prisma.product.findFirst({
+      where: { name: p.name },
+    });
+
+    if (existing) {
+      await prisma.product.update({
+        where: { id: existing.id },
+        data: p,
+      });
+      console.log(`Updated: ${p.name}`);
+    } else {
+      await prisma.product.create({ data: p });
+      console.log(`Created: ${p.name}`);
+    }
   }
 
-  console.log(`Successfully seeded ${products.length} products!`);
+  console.log(`Successfully processed ${products.length} products!`);
 }
 
 main()
