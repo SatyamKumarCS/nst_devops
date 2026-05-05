@@ -1,21 +1,28 @@
-# Node image
-FROM node:24-slim
+# Stage 1: Build/Install dependencies
+FROM node:20-alpine AS builder
+
 WORKDIR /app
-# Create a non-root user
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
-# Install openssl
-RUN apt-get update && apt-get install -y openssl
-# Install production dependencies
+
 COPY package*.json ./
 RUN npm ci --omit=dev
-# Generate prisma client
-COPY prisma ./prisma/
-COPY prisma.config.ts ./
-RUN npm run db:generate
-# Copy built files
-COPY --chown=appuser:appgroup . .
-# Change user
-USER appuser
-# Start the app
-CMD ["npm", "run", "start"]
 
+# Stage 2: Runtime
+FROM node:20-alpine
+
+# Set non-root user
+USER node
+
+WORKDIR /app
+
+# Copy dependencies and application code
+COPY --chown=node:node --from=builder /app/node_modules ./node_modules
+COPY --chown=node:node package*.json ./
+COPY --chown=node:node src ./src
+
+EXPOSE 8080
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/api/health || exit 1
+
+CMD ["npm", "start"]

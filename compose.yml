@@ -1,73 +1,54 @@
 services:
-  db:
-    profiles: [ "localdb" ]
-    image: postgres:16-alpine
+  mongodb:
+    image: mongo:6.0
     restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: shopsmart
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     ports:
-      - 5435:5432
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 5s
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
       timeout: 5s
       retries: 5
 
-  migrate:
-    depends_on:
-      db:
-        condition: service_healthy
-        required: false
-    profiles: [ "migrate" ]
-    image: ghcr.io/satyamkumarcs/nst_devops-server:latest
-    command: "npm run db:migrate:deploy"
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/shopsmart
-
-  seed:
-    depends_on:
-      migrate:
-        condition: service_completed_successfully
-        required: false
-      db:
-        condition: service_healthy
-        required: false
-    profiles: [ "seed" ]
-    image: ghcr.io/satyamkumarcs/nst_devops-server:latest
-    command: "npm run db:seed"
-    environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/shopsmart
-
   api:
-    depends_on:
-      db:
-        condition: service_healthy
-        required: false
-      seed:
-        condition: service_completed_successfully
-        required: false
-      migrate:
-        condition: service_completed_successfully
-        required: false
-    image: ghcr.io/satyamkumarcs/nst_devops-server:latest
+    build: 
+      context: ./server
     restart: unless-stopped
-    ports:
-      - 5001:8080
+    env_file:
+      - ./server/.env
     environment:
       PORT: 8080
-      DATABASE_URL: postgres://postgres:postgres@db:5432/shopsmart
+      # MONGODB_URI will be picked up from ./server/.env
+      # If not present in .env, it can still be set here as a fallback:
+      # MONGODB_URI: ${MONGODB_URI:-mongodb://mongodb:27017/shopsmart}
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   web:
-    image: ghcr.io/satyamkumarcs/nst_devops-client:latest
+    build: 
+      context: ./client
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
     restart: unless-stopped
     ports:
-      - 80:80
-    environment:
-      VITE_API_URL: http://api:8080
+      - "3000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+      - web
 
 volumes:
-  postgres_data: null
+  mongodb_data:

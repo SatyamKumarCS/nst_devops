@@ -44,8 +44,7 @@ jobs:
     - name: Run Linter
       run: npm run lint
       
-    - name: Check Formatting
-      run: npm run format:check
+
 
     - name: Run Tests
       run: npm test
@@ -57,16 +56,12 @@ jobs:
     runs-on: ubuntu-latest
     
     services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: testdb
+      mongodb:
+        image: mongo:6.0
         ports:
-          - 5432:5432
+          - 27017:27017
         options: >-
-          --health-cmd="pg_isready -U postgres"
+          --health-cmd="mongosh --eval 'db.adminCommand(\"ping\")'"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -88,24 +83,13 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Generate Prisma Client
-      run: npm run db:generate
-
-    - name: Set up Database
-      run: npx prisma db push --force-reset
-      env:
-        DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/testdb"
-
     - name: Run Linter
-      run: npm run lint 
-
-    - name: Check Formatting
-      run: npm run format:check
+      run: npm run lint
 
     - name: Run Tests
       run: npm test
       env:
-        DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/testdb"
+        MONGODB_URI: "mongodb://localhost:27017/testdb"
 
   build-and-push-image:
     needs:

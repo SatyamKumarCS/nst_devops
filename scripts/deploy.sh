@@ -9,10 +9,8 @@ echo "🚀 Starting Deployment Process..."
 echo "Pulling docker images"
 docker compose pull
 
-# 4. Migrate database
-echo "🗄️  Running Database Migrations..."
-# Start the postgres service first if not already running
-docker compose up -d --no-deps db migrate seed api web
+# Start services
+docker compose up -d
 
 echo "🧹 Cleaning up old images..."
 docker image prune -f
