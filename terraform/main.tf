@@ -6,6 +6,13 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  # Remote backend: stores terraform.tfstate in S3 so state persists across deployments
+  backend "s3" {
+    bucket = "shopsmart-bucket-fd4f9579"
+    key    = "terraform/terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 provider "aws" {
