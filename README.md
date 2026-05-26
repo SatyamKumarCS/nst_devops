@@ -1,4 +1,6 @@
 # ShopSmart
+---
+
 
 A small, clean e-commerce storefront - React frontend, Node.js + Express backend, MongoDB Atlas database.
 
